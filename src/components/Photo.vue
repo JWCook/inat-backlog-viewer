@@ -1,11 +1,6 @@
 <template>
   <div class="lightbox" @click.self="closeLightbox">
-    <v-img
-      lazy-src="photoUrl(photo.filename)"
-      max-height="150"
-      max-width="250"
-      src="https://picsum.photos/id/11/500/300"
-    ></v-img>
+    <v-img src="photoUrl(photo.filename)" max-height="500"></v-img>
     <div class="lightbox-info">
       <div class="lightbox-info-inner">
         <p v-if="photo.title">{{ photo.title }}</p>
@@ -45,7 +40,9 @@ export default {
   },
   methods: {
     photoUrl(filename) {
-      return require(`../assets/images/${filename}`);
+      // return require(`../assets/images/${filename}`);
+      console.log(`../assets/images/${filename}`)
+      return "https://picsum.photos/id/11/500/300";
     },
     closeLightbox() {
       this.$router.push("/");
