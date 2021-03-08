@@ -12,7 +12,7 @@ export default {
   name: "photo",
   components: {
     Gallery,
-    Photo
+    Photo,
   }
 };
 </script>

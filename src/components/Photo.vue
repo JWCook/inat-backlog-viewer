@@ -1,24 +1,36 @@
 <template>
-  <div class="lightbox" @click.self="closeLightbox">
-    <v-img src="photoUrl(photo.filename)" max-height="500"></v-img>
-    <div class="lightbox-info">
-      <div class="lightbox-info-inner">
-        <p v-if="photo.title">{{ photo.title }}</p>
-        <p v-if="photo.location">{{ photo.location }}</p>
-        <p v-if="photo.photographer">
-          <a rel="nofollow" :href="photo.photographer.url">
-            {{ photo.photographer.name }}
-          </a>
-        </p>
+  <div class="lighbox">
+    <v-overlay :value="overlay">
+      <v-container>
+        <v-row>
+          <v-spacer></v-spacer>
+          <v-col class="d-flex child-flex" cols="12">
+            <v-card class="pa-2 ma-2" v-click-outside="closeLightbox">
+              <!-- Image + placeholder -->
+              <v-img :src="photoUrl(photo.filename)" contain max-height="80vh" max-width="50vw">
+                <template v-slot:placeholder>
+                  <v-row class="fill-height ma-0" align="center" justify="center">
+                    <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                  </v-row>
+                </template>
+              </v-img>
 
-        <p v-if="photo.source">
-          via
-          <a rel="nofollow" :href="photo.source.url">
-            {{ photo.source.name }}
-          </a>
-        </p>
-      </div>
-    </div>
+              <!-- Card info -->
+              <v-card-title>{{ photo.filename }}</v-card-title>
+              <p v-if="photo.title">{{ photo.title }}</p>
+              <p v-if="photo.location">{{ photo.location }}</p>
+              <p v-if="photo.photographer">
+                <a rel="nofollow" :href="photo.photographer.url">{{ photo.photographer.name }}</a>
+              </p>
+              <p v-if="photo.source">
+                via
+                <a rel="nofollow" :href="photo.source.url">{{ photo.source.name }}</a>
+              </p>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-overlay>
   </div>
 </template>
 
@@ -28,26 +40,29 @@ export default {
   name: "Photo",
   data() {
     return {
-      photos
+      photos,
+      overlay: true,
     };
   },
   computed: {
     photo() {
-      return this.photos.find(photo => {
+      return this.photos.find((photo) => {
         return photo.id === Number(this.$route.params.id);
       });
-    }
+    },
   },
   methods: {
     photoUrl(filename) {
-      // return require(`../assets/images/${filename}`);
-      console.log(`../assets/images/${filename}`)
-      return "https://picsum.photos/id/11/500/300";
+      return require(`../assets/images/${filename}`);
+    },
+    thumbUrl(filename) {
+      return require(`../assets/images/thumbnails/${filename}`);
     },
     closeLightbox() {
+      this.overlay = false;
       this.$router.push("/");
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -58,22 +73,9 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 2rem;
-}
-.lightbox img {
-  margin: auto;
-  width: 100%;
-  grid-column-start: 2;
-}
-.lightbox-info {
-  margin: auto 2rem auto 0;
-}
-.lightbox-info-inner {
-  background-color: #ffffff;
-  display: inline-block;
-  padding: 2rem;
+  /* background-color: rgba(0, 0, 0, 0.8); */
+  /* display: grid; */
+  /* grid-template-columns: repeat(3, 1fr); */
+  /* grid-gap: 2rem; */
 }
 </style>

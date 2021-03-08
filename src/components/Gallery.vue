@@ -1,44 +1,42 @@
 <template>
   <div>
     <v-container>
-      <v-row no-gutters>
+      <v-row>
+        <v-spacer></v-spacer>
         <v-col
           v-for="photo in photos"
           :key="photo.id"
           class="d-flex child-flex"
           xs="12"
-          md="6"
+          sm="6"
+          md="4"
           lg="3"
           xl="2"
-          padding="0 5rem"
         >
           <v-card class="pa-2 mx-1 my-2">
             <!-- Image + placeholder -->
-            <v-img
-              :src="thumbUrl(photo.filename)"
-              :lazy-src="`https://picsum.photos/10/6?image=${n * 5 + 10}`"
-              aspect-ratio="1"
-              class="grey lighten-2"
-            >
-              <template v-slot:placeholder>
-                <v-row class="fill-height ma-0" align="center" justify="center">
-                  <v-progress-circular
-                    indeterminate
-                    color="grey lighten-5"
-                  ></v-progress-circular>
-                </v-row>
-              </template>
-            </v-img>
+            <router-link :to="`/photo/${photo.id}`">
+              <v-img
+                :src="thumbUrl(photo.filename)"
+                :lazy-src="`https://picsum.photos/10/6?image=${n * 5 + 10}`"
+                aspect-ratio="1"
+                class="grey lighten-2"
+              >
+                <template v-slot:placeholder>
+                  <v-row class="fill-height ma-0" align="center" justify="center">
+                    <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                  </v-row>
+                </template>
+              </v-img>
+            </router-link>
 
             <!-- Card info + buttons -->
-            <v-card-title>AAAA</v-card-title>
+            <v-card-title>{{ photo.filename }}</v-card-title>
             <v-card-text>This is some text</v-card-text>
             <v-card-actions>
               <v-btn color="green lighten-2" text>Details</v-btn>
               <v-btn icon @click="show = !show">
-                <v-icon>{{
-                  show ? "mdi-chevron-up" : "mdi-chevron-down"
-                }}</v-icon>
+                <v-icon>{{ show ? "mdi-chevron-up" : "mdi-chevron-down" }}</v-icon>
               </v-btn>
               <v-spacer></v-spacer>
               <v-btn icon><v-icon>mdi-heart</v-icon></v-btn>
@@ -56,16 +54,6 @@
         </v-col>
       </v-row>
     </v-container>
-
-    <h1>HI THERE</h1>
-
-    <div class="gallery">
-      <div class="gallery-panel" v-for="photo in photos" :key="photo.id">
-        <router-link :to="`/photo/${photo.id}`">
-          <img :src="thumbUrl(photo.filename)" />
-        </router-link>
-      </div>
-    </div>
   </div>
 </template>
 
@@ -75,16 +63,15 @@ export default {
   name: "Gallery",
   data() {
     return {
-      photos
+      photos,
+      show: false,
     };
   },
   methods: {
     thumbUrl(filename) {
-      // return require(`../assets/images/thumbnails/${filename}`);
-      console.log(`../assets/images/${filename}`);
-      return "https://picsum.photos/200/200";
-    }
-  }
+      return require(`../assets/images/thumbnails/${filename}`);
+    },
+  },
 };
 </script>
 
