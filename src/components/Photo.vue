@@ -46,7 +46,7 @@ export default {
   },
   computed: {
     photo() {
-      return this.photos.find((photo) => {
+      return this.photos.find(photo => {
         return photo.id === Number(this.$route.params.id);
       });
     },

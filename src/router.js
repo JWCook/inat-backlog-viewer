@@ -9,24 +9,24 @@ const routes = [
   {
     path: "/",
     name: "home",
-    component: Home
+    component: Home,
   },
   {
     path: "/photo/:id",
     name: "photo",
-    component: Photo
+    component: Photo,
   },
   {
     path: "/about",
     name: "About",
-    component: () => import(/* webpackChunkName: "about" */ "./views/About.vue")
-  }
+    component: () => import(/* webpackChunkName: "about" */ "./views/About.vue"),
+  },
 ];
 
 const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
-  routes
+  routes,
 });
 
 export default router;

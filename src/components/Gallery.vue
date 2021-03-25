@@ -16,18 +16,34 @@
           <v-card class="pa-2 mx-1 my-2">
             <!-- Image + placeholder -->
             <router-link :to="`/photo/${photo.id}`">
-              <v-img
-                :src="thumbUrl(photo.filename)"
-                :lazy-src="`https://picsum.photos/10/6?image=${n * 5 + 10}`"
-                aspect-ratio="1"
-                class="grey lighten-2"
-              >
-                <template v-slot:placeholder>
-                  <v-row class="fill-height ma-0" align="center" justify="center">
-                    <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
-                  </v-row>
-                </template>
-              </v-img>
+              <v-hover v-slot="{ hover }">
+                <v-img
+                  :src="thumbUrl(photo.filename)"
+                  :lazy-src="`https://picsum.photos/10/6?image=${n * 5 + 10}`"
+                  aspect-ratio="1"
+                  class="grey lighten-2"
+                >
+                  <template v-slot:placeholder>
+                    <v-row class="fill-height ma-0" align="center" justify="center">
+                      <v-progress-circular
+                        indeterminate
+                        color="grey lighten-5"
+                      ></v-progress-circular>
+                    </v-row>
+                  </template>
+
+                  <!-- Hover overlay -->
+                  <v-expand-transition>
+                    <div
+                      v-if="hover"
+                      class="d-flex transition-fast-in-fast-out grey darken-2 v-card--reveal display-1 white--text"
+                      style="height: 100%"
+                    >
+                      {{ photo.filename }}
+                    </div>
+                  </v-expand-transition>
+                </v-img>
+              </v-hover>
             </router-link>
 
             <!-- Card info + buttons -->
@@ -89,5 +105,13 @@ export default {
   height: 22vw;
   object-fit: cover;
   border-radius: 0.75rem;
+}
+.v-card--reveal {
+  align-items: center;
+  bottom: 0;
+  justify-content: center;
+  opacity: 0.8;
+  position: absolute;
+  width: 100%;
 }
 </style>
