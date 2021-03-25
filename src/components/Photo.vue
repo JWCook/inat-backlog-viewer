@@ -7,7 +7,12 @@
           <v-col class="d-flex child-flex" cols="12">
             <v-card class="pa-2 ma-2" v-click-outside="closeLightbox">
               <!-- Image + placeholder -->
-              <v-img :src="photoUrl(photo.filename)" contain max-height="80vh" max-width="50vw">
+              <v-img
+                :src="observation.photo_original_url"
+                contain
+                max-height="80vh"
+                max-width="50vw"
+              >
                 <template v-slot:placeholder>
                   <v-row class="fill-height ma-0" align="center" justify="center">
                     <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
@@ -16,16 +21,12 @@
               </v-img>
 
               <!-- Card info -->
-              <v-card-title>{{ photo.filename }}</v-card-title>
-              <p v-if="photo.title">{{ photo.title }}</p>
-              <p v-if="photo.location">{{ photo.location }}</p>
-              <p v-if="photo.photographer">
-                <a rel="nofollow" :href="photo.photographer.url">{{ photo.photographer.name }}</a>
-              </p>
-              <p v-if="photo.source">
-                via
-                <a rel="nofollow" :href="photo.source.url">{{ photo.source.name }}</a>
-              </p>
+              <v-card-title>{{ observation.taxon_formatted_name }}</v-card-title>
+              <!-- <p v-if="observation.title">{{ observation.title }}</p> -->
+              <!-- <p v-if="observation.location">{{ observation.location }}</p> -->
+              <!-- <p v-if="observation.photographer">
+                <a rel="nofollow" :href="observation.photographer.url">{{ observation.photographer.name }}</a>
+              </p> -->
             </v-card>
           </v-col>
         </v-row>
@@ -35,19 +36,19 @@
 </template>
 
 <script>
-import photos from "@/photos.json";
+import observations from '@/observations.json';
 export default {
-  name: "Photo",
+  name: 'Photo',
   data() {
     return {
-      photos,
+      observations,
       overlay: true,
     };
   },
   computed: {
-    photo() {
-      return this.photos.find(photo => {
-        return photo.id === Number(this.$route.params.id);
+    observation() {
+      return this.observations.find(observation => {
+        return observation.id === Number(this.$route.params.id);
       });
     },
   },
@@ -60,7 +61,7 @@ export default {
     },
     closeLightbox() {
       this.overlay = false;
-      this.$router.push("/");
+      this.$router.push('/');
     },
   },
 };

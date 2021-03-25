@@ -2,11 +2,11 @@
   <Gallery />
 </template>
 <script>
-import Gallery from "@/components/Gallery.vue";
+import Gallery from '@/components/Gallery.vue';
 export default {
-  name: "home",
+  name: 'home',
   components: {
-    Gallery
-  }
+    Gallery,
+  },
 };
 </script>

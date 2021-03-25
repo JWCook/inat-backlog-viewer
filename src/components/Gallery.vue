@@ -4,25 +4,20 @@
       <v-row>
         <v-spacer></v-spacer>
         <v-col
-          v-for="photo in photos"
-          :key="photo.id"
+          v-for="observation in observations"
+          :key="observation.id"
           class="d-flex child-flex"
           xs="12"
-          sm="6"
-          md="4"
-          lg="3"
-          xl="2"
+          sm="12"
+          md="6"
+          lg="4"
+          xl="3"
         >
           <v-card class="pa-2 mx-1 my-2">
             <!-- Image + placeholder -->
-            <router-link :to="`/photo/${photo.id}`">
+            <router-link :to="`/photo/${observation.id}`">
               <v-hover v-slot="{ hover }">
-                <v-img
-                  :src="thumbUrl(photo.filename)"
-                  :lazy-src="`https://picsum.photos/10/6?image=${n * 5 + 10}`"
-                  aspect-ratio="1"
-                  class="grey lighten-2"
-                >
+                <v-img :src="observation.photo_medium_url" aspect-ratio="1" class="grey lighten-2">
                   <template v-slot:placeholder>
                     <v-row class="fill-height ma-0" align="center" justify="center">
                       <v-progress-circular
@@ -36,10 +31,23 @@
                   <v-expand-transition>
                     <div
                       v-if="hover"
-                      class="d-flex transition-fast-in-fast-out grey darken-2 v-card--reveal display-1 white--text"
+                      class="transition-fast-in-fast-out grey darken-2 v-card--reveal white--text"
                       style="height: 100%"
                     >
-                      {{ photo.filename }}
+                      <p>
+                        <b>IDs:</b> {{ observation.num_identification_agreements }} agreements,
+                        {{ observation.num_identification_disagreements }} disagreements
+                      </p>
+                      <p>
+                        <b>Created at:</b> {{ observation.created_at }}<br />
+                        <b>Updated at:</b> {{ observation.updated_at }}
+                      </p>
+                      <!-- <br /><b>Ranking values:</b> -->
+                      <!-- {% for k, v in observation.ranking_values.items() %}
+                      {{ '<br />&emsp;<b>' + k + ':</b> ' + v }} {% endfor %} -->
+                      <p v-if="observation.description">
+                        <b>Description:</b> {{ observation.description }}}
+                      </p>
                     </div>
                   </v-expand-transition>
                 </v-img>
@@ -47,25 +55,16 @@
             </router-link>
 
             <!-- Card info + buttons -->
-            <v-card-title>{{ photo.filename }}</v-card-title>
+            <v-card-title>
+              <b>{{ observation.taxon_rank }}:</b> {{ observation.taxon_formatted_name }}
+            </v-card-title>
             <v-card-text>This is some text</v-card-text>
             <v-card-actions>
               <v-btn color="green lighten-2" text>Details</v-btn>
-              <v-btn icon @click="show = !show">
-                <v-icon>{{ show ? "mdi-chevron-up" : "mdi-chevron-down" }}</v-icon>
-              </v-btn>
               <v-spacer></v-spacer>
               <v-btn icon><v-icon>mdi-heart</v-icon></v-btn>
               <v-btn icon><v-icon>mdi-bookmark</v-icon></v-btn>
             </v-card-actions>
-
-            <!-- Card expansion -->
-            <v-expand-transition>
-              <div v-show="show">
-                <v-divider></v-divider>
-                <v-card-text>WHOA HEY LOOK AT THIS TEXT MAN</v-card-text>
-              </div>
-            </v-expand-transition>
           </v-card>
         </v-col>
       </v-row>
@@ -74,13 +73,13 @@
 </template>
 
 <script>
-import photos from "@/photos.json";
+import observations from '@/observations.json';
 export default {
-  name: "Gallery",
+  name: 'Observation',
   data() {
     return {
-      photos,
-      show: false,
+      observations,
+      overlay: true,
     };
   },
   methods: {
@@ -107,9 +106,9 @@ export default {
   border-radius: 0.75rem;
 }
 .v-card--reveal {
-  align-items: center;
+  align-items: left;
   bottom: 0;
-  justify-content: center;
+  justify-content: left;
   opacity: 0.8;
   position: absolute;
   width: 100%;
