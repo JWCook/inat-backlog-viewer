@@ -1,17 +1,14 @@
 module.exports = {
   root: true,
   env: {
+    browser: true,
     node: true,
   },
-  extends: [
-    'plugin:prettier/recommended',
-    'plugin:vue/essential',
-    'eslint:recommended',
-    '@vue/prettier',
-  ],
   parserOptions: {
     parser: 'babel-eslint',
   },
+  extends: ['@nuxtjs', 'plugin:prettier/recommended', 'plugin:nuxt/recommended'],
+  plugins: [],
   rules: {
     eqeqeq: 'warn',
     'prettier/prettier': [
