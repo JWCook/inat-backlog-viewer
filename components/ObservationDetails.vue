@@ -20,7 +20,7 @@
     </v-card-text>
     <v-card-actions>
       <a :href="'https://www.inaturalist.org/observations/' + observation.id">
-        <v-btn color="green lighten-2" text>Details on iNaturalist</v-btn>
+        <v-btn color="green lighten-2" text>View on iNaturalist</v-btn>
       </a>
       <v-spacer></v-spacer>
       <v-btn icon><v-icon>mdi-bookmark</v-icon></v-btn>

@@ -7,6 +7,7 @@
           <v-col class="d-flex child-flex" cols="12">
             <v-card v-click-outside="closeLightbox" class="pa-2 ma-2">
               <!-- Image + placeholder -->
+              <!-- :lazy-src="observation.photo_small_url" -->
               <v-img
                 :src="observation.photo_original_url"
                 contain
