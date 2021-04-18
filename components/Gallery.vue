@@ -36,21 +36,19 @@
                       class="transition-fast-in-fast-out grey darken-2 v-card--reveal white--text"
                       style="height: 100%"
                     >
-                      <p>
-                        <ul style="list-style-type: none; padding-left: 0;">
-                          <li>
-                            <b>IDs:</b>
-                            {{ observation.num_identification_agreements }} agreements,
-                            {{ observation.num_identification_disagreements }} disagreements
-                          </li>
-                          <li><b>Created at:</b> {{ observation.created_at }}</li>
-                          <li><b>Updated at:</b> {{ observation.updated_at }}</li>
-                          <li v-if="observation.short_description">
-                            <b>Description:</b> {{ observation.short_description }}
-                          </li>
-                        </ul>
-                      </p>
-                      <b>Ranking values:</b>
+                      <ul style="list-style-type: none; padding-left: 0">
+                        <li>
+                          <b>IDs:</b>
+                          {{ observation.num_identification_agreements }} agreements,
+                          {{ observation.num_identification_disagreements }} disagreements
+                        </li>
+                        <li><b>Created at:</b> {{ observation.created_at }}</li>
+                        <li><b>Updated at:</b> {{ observation.updated_at }}</li>
+                        <li v-if="observation.short_description">
+                          <b>Description:</b> {{ observation.short_description }}
+                        </li>
+                      </ul>
+                      <br /><b>Ranking values:</b>
                       <ul>
                         <li v-for="(value, key) in observation.ranking_values" :key="key">
                           <b>{{ key }}:</b> {{ value }}
@@ -63,31 +61,7 @@
             </nuxt-link>
 
             <!-- Card info + buttons -->
-            <v-card-title>
-              <div class="card-title">
-                <b>{{ observation.taxon_rank }}:&nbsp;</b>
-                <br /><a
-                  :href="'https://www.inaturalist.org/taxa/' + observation.taxon_id"
-                  :title="observation.taxon_formatted_name"
-                >
-                  {{ observation.taxon_formatted_name }}
-                </a>
-              </div>
-            </v-card-title>
-            <v-card-text>
-              <b>Observed by:</b>
-              <a :href="'https://www.inaturalist.org/people/' + observation.user_id">
-                {{ observation.user_login }}
-              </a>
-              on {{ observation.observed_on }}
-            </v-card-text>
-            <v-card-actions>
-              <a :href="'https://www.inaturalist.org/observations/' + observation.id">
-                <v-btn color="green lighten-2" text>Details on iNaturalist</v-btn>
-              </a>
-              <v-spacer></v-spacer>
-              <v-btn icon><v-icon>mdi-bookmark</v-icon></v-btn>
-            </v-card-actions>
+            <ObservationDetails :observation="observation" />
           </v-card>
         </v-col>
       </v-row>
@@ -96,15 +70,19 @@
 </template>
 
 <script>
-import observations from '~/assets/observations.json'
+import observations from '~/assets/observations.json';
+import ObservationDetails from '~/components/ObservationDetails.vue';
 export default {
   name: 'Observation',
+  components: {
+    ObservationDetails,
+  },
   data() {
     return {
       observations,
-    }
+    };
   },
-}
+};
 </script>
 
 <style>

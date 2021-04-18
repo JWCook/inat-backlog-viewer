@@ -21,31 +21,7 @@
               </v-img>
 
               <!-- Card info + buttons -->
-              <v-card-title>
-                <div class="card-title">
-                  <b>{{ observation.taxon_rank }}:&nbsp;</b>
-                  <br /><a
-                    :href="'https://www.inaturalist.org/taxa/' + observation.taxon_id"
-                    :title="observation.taxon_formatted_name"
-                  >
-                    {{ observation.taxon_formatted_name }}
-                  </a>
-                </div>
-              </v-card-title>
-              <v-card-text>
-                <b>Observed by:</b>
-                <a :href="'https://www.inaturalist.org/people/' + observation.user_id">
-                  {{ observation.user_login }}
-                </a>
-                on {{ observation.observed_on }}
-              </v-card-text>
-              <v-card-actions>
-                <a :href="'https://www.inaturalist.org/observations/' + observation.id">
-                  <v-btn color="green lighten-2" text>Details on iNaturalist</v-btn>
-                </a>
-                <v-spacer></v-spacer>
-                <v-btn icon><v-icon>mdi-bookmark</v-icon></v-btn>
-              </v-card-actions>
+              <ObservationDetails :observation="observation" />
             </v-card>
           </v-col>
         </v-row>
@@ -55,12 +31,14 @@
 </template>
 
 <script>
-import observations from '~/assets/observations.json';
+import ObservationDetails from '~/components/ObservationDetails.vue';
 export default {
   name: 'Photo',
+  components: {
+    ObservationDetails,
+  },
   data() {
     return {
-      observations,
       overlay: true,
     };
   },
