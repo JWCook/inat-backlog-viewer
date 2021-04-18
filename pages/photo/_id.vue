@@ -1,18 +1,18 @@
 <template>
   <div>
     <Gallery />
-    <Photo />
+    <ObservationPhoto />
   </div>
 </template>
 
 <script>
 import Gallery from '@/components/Gallery.vue';
-import Photo from '@/components/Photo.vue';
+import ObservationPhoto from '~/components/ObservationPhoto.vue';
 export default {
   name: 'Photo',
   components: {
     Gallery,
-    Photo,
+    ObservationPhoto,
   },
 };
 </script>

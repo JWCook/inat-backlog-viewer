@@ -15,7 +15,9 @@
         >
           <v-card class="pa-2 mx-1 my-2">
             <!-- Image + placeholder -->
-            <nuxt-link :to="`/photo/${observation.id}`">
+            <nuxt-link
+              :to="{ name: 'photo-id', params: { id: observation.id, observation: observation } }"
+            >
               <v-hover v-slot="{ hover }">
                 <v-img :src="observation.photo_medium_url" aspect-ratio="1" class="grey lighten-2">
                   <template #placeholder>
@@ -35,22 +37,25 @@
                       style="height: 100%"
                     >
                       <p>
-                        <b>IDs:</b>
-                        {{ observation.num_identification_agreements }}
-                        agreements,
-                        {{ observation.num_identification_disagreements }}
-                        disagreements
+                        <ul style="list-style-type: none; padding-left: 0;">
+                          <li>
+                            <b>IDs:</b>
+                            {{ observation.num_identification_agreements }} agreements,
+                            {{ observation.num_identification_disagreements }} disagreements
+                          </li>
+                          <li><b>Created at:</b> {{ observation.created_at }}</li>
+                          <li><b>Updated at:</b> {{ observation.updated_at }}</li>
+                          <li v-if="observation.short_description">
+                            <b>Description:</b> {{ observation.short_description }}
+                          </li>
+                        </ul>
                       </p>
-                      <p>
-                        <b>Created at:</b> {{ observation.created_at }}<br />
-                        <b>Updated at:</b> {{ observation.updated_at }}
-                      </p>
-                      <!-- <br /><b>Ranking values:</b> -->
-                      <!-- {% for k, v in observation.ranking_values.items() %}
-                      {{ '<br />&emsp;<b>' + k + ':</b> ' + v }} {% endfor %} -->
-                      <p v-if="observation.description">
-                        <b>Description:</b> {{ observation.description }}}
-                      </p>
+                      <b>Ranking values:</b>
+                      <ul>
+                        <li v-for="(value, key) in observation.ranking_values" :key="key">
+                          <b>{{ key }}:</b> {{ value }}
+                        </li>
+                      </ul>
                     </div>
                   </v-expand-transition>
                 </v-img>
@@ -59,14 +64,28 @@
 
             <!-- Card info + buttons -->
             <v-card-title>
-              <b>{{ observation.taxon_rank }}:</b>
-              {{ observation.taxon_formatted_name }}
+              <div class="card-title">
+                <b>{{ observation.taxon_rank }}:&nbsp;</b>
+                <br /><a
+                  :href="'https://www.inaturalist.org/taxa/' + observation.taxon_id"
+                  :title="observation.taxon_formatted_name"
+                >
+                  {{ observation.taxon_formatted_name }}
+                </a>
+              </div>
             </v-card-title>
-            <v-card-text>This is some text</v-card-text>
+            <v-card-text>
+              <b>Observed by:</b>
+              <a :href="'https://www.inaturalist.org/people/' + observation.user_id">
+                {{ observation.user_login }}
+              </a>
+              on {{ observation.observed_on }}
+            </v-card-text>
             <v-card-actions>
-              <v-btn color="green lighten-2" text>Details</v-btn>
+              <a :href="'https://www.inaturalist.org/observations/' + observation.id">
+                <v-btn color="green lighten-2" text>Details on iNaturalist</v-btn>
+              </a>
               <v-spacer></v-spacer>
-              <v-btn icon><v-icon>mdi-heart</v-icon></v-btn>
               <v-btn icon><v-icon>mdi-bookmark</v-icon></v-btn>
             </v-card-actions>
           </v-card>
@@ -77,16 +96,15 @@
 </template>
 
 <script>
-import observations from '~/assets/observations.json';
+import observations from '~/assets/observations.json'
 export default {
   name: 'Observation',
   data() {
     return {
       observations,
-      overlay: true,
-    };
+    }
   },
-};
+}
 </script>
 
 <style>
@@ -111,5 +129,11 @@ export default {
   opacity: 0.8;
   position: absolute;
   width: 100%;
+}
+.card-title {
+  white-space: nowrap;
+  word-break: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 </style>
