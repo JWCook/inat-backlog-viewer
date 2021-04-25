@@ -3,7 +3,7 @@
     <v-card-title>
       <div class="card-title">
         <b>{{ observation.taxon_rank }}:&nbsp;</b>
-        <br /><a
+        <a
           :href="'https://www.inaturalist.org/taxa/' + observation.taxon_id"
           :title="observation.taxon_formatted_name"
         >
@@ -20,7 +20,7 @@
     </v-card-text>
     <v-card-actions>
       <a :href="'https://www.inaturalist.org/observations/' + observation.id">
-        <v-btn color="green lighten-2" text>View on iNaturalist</v-btn>
+        <v-btn class="ma-2" color="green lighten-2" text>View on iNaturalist</v-btn>
       </a>
       <v-spacer></v-spacer>
       <v-btn icon><v-icon>mdi-bookmark</v-icon></v-btn>
@@ -36,3 +36,12 @@ export default {
   },
 };
 </script>
+
+<style>
+.card-title {
+  white-space: nowrap;
+  word-break: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+</style>
