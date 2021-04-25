@@ -1,5 +1,6 @@
-# vue-photo-gallery
-A simple photo gallery app for the purpose of learning Vue, Vuetify, and Nuxt
+# inat-backlog-viewer
+A photo gallery app used to view output from [inat-backlog-slogger](https://github.com/JWCook/inat-backlog-slogger).
+Built with Vue, Vuetify, and Nuxt.
 
 ## Setup
 
