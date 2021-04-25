@@ -10,6 +10,7 @@
             <v-list-item-title v-text="item.title" />
           </v-list-item-content>
         </v-list-item>
+        <v-list-item><ThemeToggler /></v-list-item>
       </v-list>
     </v-navigation-drawer>
     <v-app-bar :clipped-left="clipped" fixed app>
@@ -25,7 +26,12 @@
 </template>
 
 <script>
+import ThemeToggler from '~/components/ThemeToggler.vue';
+
 export default {
+  components: {
+    ThemeToggler,
+  },
   data() {
     return {
       clipped: false,
@@ -34,7 +40,7 @@ export default {
       items: [
         {
           icon: 'mdi-apps',
-          title: 'Welcome',
+          title: '',
           to: '/',
         },
       ],

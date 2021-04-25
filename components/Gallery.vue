@@ -85,7 +85,7 @@ import ObservationDetails from '~/components/ObservationDetails.vue';
 import observations from '~/assets/observations.json';
 
 export default {
-  name: 'Observation',
+  name: 'Gallery',
   components: {
     CoolLightBox,
     ObservationDetails,
