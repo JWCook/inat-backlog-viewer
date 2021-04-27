@@ -11,20 +11,22 @@
     "lintfix": "eslint --fix --ext \".js,.vue\" --ignore-path .gitignore ."
   },
   "dependencies": {
-    "core-js": "^3.11.0",
-    "nuxt": "^2.15.4",
-    "vue-cool-lightbox": "^2.7.1"
+    "@nuxt/builder": "^2.13.3",
+    "@nuxt/utils": "^2.15.7",
+    "core-js": "^3.19.1",
+    "nuxt": "^2.15.8",
+    "vue-cool-lightbox": "^2.7.4"
   },
   "devDependencies": {
-    "@nuxtjs/eslint-config": "^6.0.0",
+    "@nuxtjs/eslint-config": "^7.0.0",
     "@nuxtjs/eslint-module": "^3.0.2",
-    "@nuxtjs/vuetify": "^1.11.3",
+    "@nuxtjs/vuetify": "^1.12.1",
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.24.0",
+    "eslint": "^8.2.0",
     "eslint-config-prettier": "^8.2.0",
-    "eslint-plugin-nuxt": "^2.0.0",
-    "eslint-plugin-prettier": "^3.4.0",
-    "eslint-plugin-vue": "^7.9.0",
-    "prettier": "^2.2.1"
+    "eslint-plugin-nuxt": "^3.0.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-vue": "^7.20.0",
+    "prettier": "^2.4.1"
   }
 }
