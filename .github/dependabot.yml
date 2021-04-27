@@ -4,8 +4,9 @@ updates:
 - package-ecosystem: npm
   directory: '/'
   schedule:
-    interval: daily
-    time: '00:00'
+    interval: "weekly"
+    day: "saturday"
+    time: "16:00"
   open-pull-requests-limit: 15
   reviewers:
     - jwcook
@@ -17,8 +18,9 @@ updates:
 - package-ecosystem: github-actions
   directory: '/'
   schedule:
-    interval: daily
-    time: '00:00'
+    interval: "weekly"
+    day: "saturday"
+    time: "16:00"
   open-pull-requests-limit: 5
   reviewers:
     - jwcook
