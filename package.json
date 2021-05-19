@@ -15,7 +15,7 @@
     "@nuxt/utils": "^2.15.6",
     "core-js": "^3.12.1",
     "nuxt": "^2.15.6",
-    "vue-cool-lightbox": "^2.7.3"
+    "vue-cool-lightbox": "^2.7.4"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^6.0.0",
