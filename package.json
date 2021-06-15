@@ -11,7 +11,7 @@
     "lintfix": "eslint --fix --ext \".js,.vue\" --ignore-path .gitignore ."
   },
   "dependencies": {
-    "@nuxt/builder": "^2.15.6",
+    "@nuxt/builder": "^2.15.7",
     "@nuxt/utils": "^2.15.7",
     "core-js": "^3.14.0",
     "nuxt": "^2.15.6",
