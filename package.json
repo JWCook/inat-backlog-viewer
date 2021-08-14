@@ -14,7 +14,7 @@
     "@nuxt/builder": "^2.13.3",
     "@nuxt/utils": "^2.15.7",
     "core-js": "^3.16.0",
-    "nuxt": "^2.13.3",
+    "nuxt": "^2.15.8",
     "vue-cool-lightbox": "^2.7.4"
   },
   "devDependencies": {
