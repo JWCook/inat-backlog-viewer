@@ -1,12 +1,12 @@
 <template>
-  <Gallery />
+  <GalleryItem />
 </template>
 <script>
-import Gallery from '@/components/Gallery.vue';
+import GalleryItem from '~/components/GalleryItem.vue';
 export default {
-  name: 'Home',
+  name: 'HomeItem',
   components: {
-    Gallery,
+    GalleryItem,
   },
 };
 </script>

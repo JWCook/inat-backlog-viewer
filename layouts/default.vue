@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import ThemeToggler from '~/components/ThemeToggler.vue'
+import ThemeToggler from '~/components/ThemeToggler.vue';
 
 export default {
   components: {
@@ -48,7 +48,7 @@ export default {
       right: true,
       rightDrawer: false,
       title: 'iNaturalist Identification Backlog: Arachnida',
-    }
+    };
   },
-}
+};
 </script>

@@ -32,7 +32,10 @@
 export default {
   name: 'ObservationDetails',
   props: {
-    observation: Object,
+    observation: {
+      type: Object,
+      required: true,
+    },
   },
 };
 </script>
