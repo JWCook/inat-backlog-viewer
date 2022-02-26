@@ -4,10 +4,9 @@ updates:
 - package-ecosystem: npm
   directory: '/'
   schedule:
-    interval: "weekly"
-    day: "saturday"
+    interval: "monthly"
     time: "16:00"
-  open-pull-requests-limit: 15
+  open-pull-requests-limit: 10
   reviewers:
     - jwcook
   commit-message:
@@ -18,8 +17,7 @@ updates:
 - package-ecosystem: github-actions
   directory: '/'
   schedule:
-    interval: "weekly"
-    day: "saturday"
+    interval: "monthly"
     time: "16:00"
   open-pull-requests-limit: 5
   reviewers:
