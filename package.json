@@ -18,7 +18,7 @@
     "vue-cool-lightbox": "^2.7.4"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.17.0",
+    "@babel/eslint-parser": "^7.18.9",
     "@nuxtjs/eslint-module": "^3.0.2",
     "@nuxtjs/vuetify": "^1.12.3",
     "eslint": "^8.18.0",
